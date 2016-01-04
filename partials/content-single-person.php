@@ -129,8 +129,8 @@
               </table>
             <?php }
                 wp_reset_postdata();
-               ?>
-            
+            ?>
+              <small>* Please note as AMTDB is in its early stages, this is not the performers complete resume. Just the shows added to our database so far.</small>
             <?php 
               global $post;
               $tag = $post->post_name; 
