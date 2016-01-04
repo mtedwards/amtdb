@@ -1,0 +1,107 @@
+
+/* Typograhy */
+.h1 { font-size: map-get(map-get($header-sizes, small), h1) * 1px;}
+.h2 { font-size: map-get(map-get($header-sizes, small), h2) * 1px;}
+.h3 { font-size: map-get(map-get($header-sizes, small), h3) * 1px;}
+.h4 { font-size: map-get(map-get($header-sizes, small), h4) * 1px;}
+.h5 { font-size: map-get(map-get($header-sizes, small), h5) * 1px;}
+.h6 { font-size: map-get(map-get($header-sizes, small), h6) * 1px;}
+
+@include breakpoint(medium) {
+  .h1 { font-size: map-get(map-get($header-sizes, medium), h1) * 1px;}
+  .h2 { font-size: map-get(map-get($header-sizes, medium), h2) * 1px;}
+  .h3 { font-size: map-get(map-get($header-sizes, medium), h3) * 1px;}
+  .h4 { font-size: map-get(map-get($header-sizes, medium), h4) * 1px;}
+  .h5 { font-size: map-get(map-get($header-sizes, medium), h5) * 1px;}
+  .h6 { font-size: map-get(map-get($header-sizes, medium), h6) * 1px;}
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	//text-transform: uppercase;	
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $header-font-family;
+	font-weight: $header-font-weight;	
+}
+
+html {
+    height: 100%;
+}
+
+body {
+/*
+  $color1: scale-color(#70e1f5,90%);
+  $color2: scale-color(#ffd194,90%);
+*/
+
+  $color1: lighten($primary-color, 40%);
+  $color2: #ddd;
+  background: linear-gradient(to top left, $color1 , $color2);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+/*
+#inner-content {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em 0;
+  max-width: $global-width;
+  
+  @include breakpoint(800) {
+    table-layout: fixed;
+    display: table;
+    .main, .sidebar {
+      display: table-cell;
+    }
+    
+    .sidebar {
+      width: 330px;
+      padding: 0;
+    }
+  }
+}
+*/
+
+.flexbox {
+  #inner-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em 0;
+    max-width: $global-width;
+    
+    @include breakpoint(800) {
+      display: flex;
+      .main {
+        width: 100%;
+      }
+      
+      .sidebar {
+        width: 330px;
+        padding: 0;
+      }
+    }
+  }
+}
+
+
+
+/*********************
+BANNER STYLES
+*********************/
+
+.banner_ads {
+  display: none;
+  @include breakpoint(750) {
+    display: block;
+  }
+}
+
+.banner-top {
+  width: 728px;
+  margin: 1em auto;
+}

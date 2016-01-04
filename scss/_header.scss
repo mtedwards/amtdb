@@ -1,0 +1,17 @@
+header.header {
+  background: white;
+  
+  .site-logo {
+    width: 500px;
+    margin: 0 auto;
+    @include breakpoint(885) {
+      width: 300px;  
+    }
+  }
+}
+
+.feature-area {
+  background: #eee;
+  padding: 2em 0 1em;
+  margin-bottom: 1em;
+}

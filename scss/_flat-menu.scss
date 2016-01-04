@@ -1,0 +1,44 @@
+.main-navigation {
+  @include menu-direction(vertical);
+  display: none; 
+  
+  &.expand {
+    display: block;
+    text-align: center;
+  }
+  
+  li a:hover, li.current_page_item a {
+    color: $secondary-color;
+  }
+  
+  
+  @include breakpoint(medium) { 
+    display: block;
+    width: auto;
+    @include menu-direction(horizontal);
+  }
+}
+
+#menuToggle {
+  text-align: center;
+  width: 95%;
+  margin: 0.4em auto;
+  display: block;
+  background: rgba($primary-color,0.5);
+  color: #333;
+  font-weight: bold;
+  padding: 0.4em;
+  font-size: 1.1em;
+  border-radius: 5px;
+  
+  transition: all 0.3s;
+  
+  &:hover, &:active {
+    background: $primary-color;
+    color: white;
+  }
+  
+  @include breakpoint(medium) {
+    display: none;
+  }
+}

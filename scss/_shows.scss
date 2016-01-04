@@ -1,0 +1,50 @@
+.show-list {
+  a.media-object {
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0px 2px 6px rgba(black, 0.2);
+    border-radius: 1px;
+    &:hover {
+      position: relative;
+      top:1px;
+      box-shadow: 0px 1px 6px rgba(black, 0.1);
+    }
+    
+    h1, p {
+      color: #444;
+    }
+    
+    h1.h3 {
+      line-height: 1.2;
+    }
+    
+  }
+  .thumbnail {
+    img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 0;
+    }
+    margin-bottom: 0;
+  }
+  
+  &.people-list {
+    .thumbnail {
+      img {
+        width: 50px;
+      }
+    }
+  }
+  
+}
+
+header.entry-header, .card {
+  padding: 1em;
+  background: white;
+  box-shadow: 0px 2px 6px rgba(black, 0.2);
+}
+
+table {
+  width: 100%;
+  box-shadow: 0px 2px 6px rgba(black, 0.2);
+}
