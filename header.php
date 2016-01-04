@@ -47,6 +47,7 @@
 		 <?php  get_template_part( 'partials/nav', 'topbar' ); ?>
        </div>
 	</header> <!-- end .header -->
+	<!--googleoff: snippet -->
 	<div class="feature-area">
   	<div class="row"> 
     	<div class="small-12 medium-10 medium-centered columns note lead text-center">
@@ -54,4 +55,4 @@
     	</div>
 	  </div>
 	</div>
-	
+	<!--googleon: snippet -->
