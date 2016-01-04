@@ -16,7 +16,16 @@
     <h1 class="h3">
       <?php the_title(); ?>
     </h1>
-		<?php the_content(); ?>
+		<?php 
+  		the_content(); 
+  		$agent = get_field('agent');
+  		if ($agent) {
+    		echo '<h5>Agent</h5>';
+    		echo $agent;
+  		}
+    ?>
+		
+		
 		
 	</header><!-- .entry-header -->
   <hr>
