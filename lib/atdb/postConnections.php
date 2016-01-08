@@ -79,3 +79,22 @@ function producer_connection_types() {
       ) );
 }
 add_action( 'p2p_init', 'producer_connection_types' );
+
+function atdb_has_connection( $from_id, $connected_type ) {
+    global $post;
+    $result = false;
+        
+    if ( null === $from_id ) return $result;
+
+    $connected = get_posts( array(
+            'connected_type' => $connected_type,
+            'connected_items' => $from_id,
+            'nopaging' => true,
+        ) 
+    );
+    if ( ! empty( $connected ) ) :
+        $result = true;
+    endif;
+
+    return $result;
+}
