@@ -80,6 +80,9 @@ function producer_connection_types() {
 }
 add_action( 'p2p_init', 'producer_connection_types' );
 
+
+// A FEW USEFUL FUNCTIONS
+
 function atdb_has_connection( $from_id, $connected_type ) {
     global $post;
     $result = false;
@@ -97,4 +100,39 @@ function atdb_has_connection( $from_id, $connected_type ) {
     endif;
 
     return $result;
+}
+
+add_action('save_post', 'atdb_person_is_actor', 10, 1 );
+
+function atdb_person_is_actor($post_id) {
+ $post = get_post($post_id);
+  if ($post->post_type == 'person') {
+    
+    $actor = atdb_has_connection($post_id,'show_to_actor');
+    
+    if ( $actor ) { 
+      update_post_meta($post_id, 'actor',true);
+    } else {
+      update_post_meta($post_id, 'actor',false);
+    }
+    
+  }
+}
+  
+
+add_action('save_post', 'atdb_person_is_creative', 10, 1 );
+
+function atdb_person_is_creative($post_id) {
+ $post = get_post($post_id);
+  if ($post->post_type == 'person') {
+    
+    $creative = atdb_has_connection($post_id,'show_to_creative');
+    
+    if ( $creative ) { 
+      update_post_meta($post_id, 'creative',true);
+    } else {
+      update_post_meta($post_id, 'creative',false);
+    }
+    
+  }
 }
