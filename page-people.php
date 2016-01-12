@@ -33,6 +33,14 @@
                     </div>
                     <div class="media-object-section">
                         <h1 class="h5"><?php the_title(); ?></h5>
+                        <?php  
+                          $post_id = get_the_ID();
+                          $actor = atdb_has_connection($post_id,'show_to_actor');
+                          if($actor) { echo 'Actor ';}
+                          $creative = atdb_has_connection($post_id,'show_to_creative');
+                          if($creative) { echo 'Creative ';}
+                        ?>
+                        
                     </div>
                   </a>
     			      <?php } ?>
