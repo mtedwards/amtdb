@@ -150,9 +150,13 @@
                 </thead>
                 <tbody> 
                   <?php while( $creative->have_posts() ) { $creative->the_post();
+                    $notes = p2p_get_meta( get_post()->p2p_id, 'notes', true );
                     echo '<tr>';
                       echo '<td><a href="'.get_the_permalink().'">'.get_the_title().'</a></td>';
                       echo '<td>'.p2p_get_meta( get_post()->p2p_id, 'role', true );
+                        if($notes) {
+                          echo ' ('.$notes.')';
+                        }
                       echo'</td>';
                     echo '</tr>';
                   }  ?>
