@@ -7,6 +7,19 @@
 		    <main id="main" class="main row show-list people-list" role="main">
   		    <div class="columns"> 
     				<h1>People</h1>
+    				
+    				<form id="live-search" action="" class="styled" method="post">
+                <fieldset>
+                    <div class="row">
+                      <div class="small-6 columns"><label class="text-left" for="filter">Search People:</label></div>
+                      <div class="small-6 columns"><label class="text-right" id="filter-count"></label></div>
+                    </div>
+                    <input type="text" class="text-input" id="filter" value="" placeholder="Type here &hellip;" />
+                    
+                </fieldset>
+                <hr>
+            </form>
+                				
     				<?php 
       				$args = array(
         				'post_type' => 'person',
@@ -36,10 +49,56 @@
                         <?php  
                           $post_id = get_the_ID();
                           $actor = atdb_has_connection($post_id,'show_to_actor');
-                          if($actor) { echo 'Actor ';}
+                          if($actor) { echo 'Actor ';
+                          /*
+                             $connected = get_posts( array(
+                                  'connected_type' => 'show_to_actor',
+                                  'connected_items' => $post_id,
+                                  'nopaging' => true,
+                                  )
+                              );
+                              if ( ! empty( $connected ) ) :
+                                $shows = array();
+                                 foreach($connected as $connection) {
+                                   $shows[] = $connection->post_title;
+                                 }
+                                 print_r($shows);
+                              endif;
+                          */
+                          }
                           $creative = atdb_has_connection($post_id,'show_to_creative');
-                          if($creative) { echo 'Creative ';}
-                        ?>
+                          
+                          if($creative && $actor) {
+                            echo ', ';
+                          }
+                          
+                          if($creative) {
+                            $connected = get_posts( array(
+                                  'connected_type' => 'show_to_creative',
+                                  'connected_items' => $post_id,
+                                  'nopaging' => true,
+                                  )
+                              );
+                              if ( ! empty( $connected ) ) :
+                                 $roles = array();
+                                 foreach($connected as $connection) {
+                                    $roles[] = p2p_get_meta( $connection->p2p_id, 'role', true );
+                                 }
+                                 $roles = array_unique($roles);
+                                 
+                                 $count = count($roles);
+                                  for ($i = 0; $i < $count; $i++) {
+                                     echo $roles[$i];
+                                  
+                                     if ($i < ($count - 1)) {
+                                        echo ', ';
+                                     }
+                                  }
+                              endif;
+                          }
+                          
+                          
+                         ?>
                         
                     </div>
                   </a>
