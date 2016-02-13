@@ -130,6 +130,46 @@
             <?php }
                 wp_reset_postdata();
             ?>
+            
+            <?php
+            // Find connected pages
+            $crew = new WP_Query( array(
+              'connected_type' => 'show_to_crew',
+              'connected_items' => get_queried_object(),
+              'nopaging' => true,
+            ) );
+            if ( $crew->have_posts() ) {
+              echo '<h4>Technical Resume:</h4>'; ?>
+              <table>
+                  <thead>
+                  <tr>
+                    <th>Show</th>
+                    <th>Position</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while( $crew->have_posts() ) { $crew->the_post();
+                    
+                    $notes = p2p_get_meta( get_post()->p2p_id, 'notes', true );
+                    
+                    echo '<tr>';
+                      if ( get_post_status() == 'publish' ) {
+                    		echo '<td><a href="'.get_the_permalink().'">'.get_the_title().'</a></td>';
+                    	} else {
+                    		echo '<td>'.get_the_title().'</td>';
+                    	}
+                      echo '<td>'.p2p_get_meta( get_post()->p2p_id, 'role', true );
+                      if($notes) {
+                        echo ' ('.$notes.')';
+                      }
+                      echo'</td>';
+                    echo '<tr>';
+                  } ?>
+                </tbody>
+              </table>
+            <?php }
+                wp_reset_postdata();
+            ?>
               <small>* Please note as AMTDB is in its early stages, this is not the performers complete resume. Just the shows added to our database so far.</small>
             <?php 
               global $post;

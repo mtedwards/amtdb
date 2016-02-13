@@ -66,6 +66,7 @@
                               endif;
                           */
                           }
+                          
                           $creative = atdb_has_connection($post_id,'show_to_creative');
                           
                           if($creative && $actor) {
@@ -97,6 +98,8 @@
                               endif;
                           }
                           
+                          $crew = atdb_has_connection($post_id,'show_to_crew');
+                          if($crew) { echo 'Crew '; }
                           
                          ?>
                         

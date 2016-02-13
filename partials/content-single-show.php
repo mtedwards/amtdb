@@ -131,7 +131,7 @@
               </table>
             <?php } wp_reset_postdata(); ?>
           </div>
-  		<div class="columns">
+          <div class="columns">
     		    		<?php
             // Find connected pages
             $creative = new WP_Query( array(
@@ -176,7 +176,54 @@
               </button>
             </div>
   		</div>
+
+      <div class="columns">
+    		    		<?php
+            // Find connected pages
+            $crew = new WP_Query( array(
+              'connected_type' => 'show_to_crew',
+              'connected_items' => get_queried_object(),
+              'nopaging' => true,
+            ) );
+            if ( $crew->have_posts() ) {
+              echo '<h4>Crew:</h4>'; ?>
+              <table>
+                <thead> 
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                  </tr>
+                </thead>
+                <tbody> 
+                  <?php while( $crew->have_posts() ) { $crew->the_post();
+                    $notes = p2p_get_meta( get_post()->p2p_id, 'notes', true );
+                    echo '<tr>';
+                      echo '<td><a href="'.get_the_permalink().'">'.get_the_title().'</a></td>';
+                      echo '<td>'.p2p_get_meta( get_post()->p2p_id, 'role', true );
+                        if($notes) {
+                          echo ' ('.$notes.')';
+                        }
+                      echo'</td>';
+                    echo '</tr>';
+                  }  ?>
+              </table>
+              </tbody>
+              <hr>
+            <?php } wp_reset_postdata(); ?>
+            <div class="small reveal" id="show-form" data-reveal>
+              <h3><?php the_title(); ?></h3>
+              <p>Update details</p>
+              <?php 
+                gravity_form(2, false, false, false, '', true); 
+                gravity_form_enqueue_scripts( 2, true );
+              ?>
+              <button class="close-button" data-close aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  		</div>
 		</div>
+
 
       <?php
       wp_reset_postdata();

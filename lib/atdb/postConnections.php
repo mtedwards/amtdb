@@ -43,6 +43,28 @@
           ),
       )
     ) );
+    
+    p2p_register_connection_type(
+      array(
+        'name'  => 'show_to_crew',
+        'from'  => 'show',
+        'to'    => 'person',
+        'title' => 'Crew',
+        'from_label' => 'Crew',
+        'to_label' => 'Resume',
+        'sortable' => 'any',
+        'fields' => array(
+          'role' => array(
+              'title' => 'Position',
+              'type' => 'text',
+          ),
+          'notes' => array(
+              'title' => 'Notes',
+              'type' => 'textarea',
+          ),
+      )
+    ) );
+    
 }
 add_action( 'p2p_init', 'people_connection_types' );
 
